@@ -45,5 +45,9 @@ class Task_manager:
     def search_tasks(self, title):
         for task in self.tasks:
             if task["title"] == title:
-                return task
-        return f"No item in list with the title {title}"
+                the_title = task["title"]
+                the_description = task["description"]
+                the_priority = task["priority"]
+                the_status = task["status"]
+                return f"Title: {the_title}\nDescription: {the_description}\nPriority: {the_priority}\nStatus: {the_status})"
+        return f"No task found with title {title}"
