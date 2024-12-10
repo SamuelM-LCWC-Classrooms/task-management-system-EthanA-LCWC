@@ -37,3 +37,5 @@ class TaskManager:
             the_priority = task["priority"]
             the_status = task["status"]
             print(f"{the_title} (Priority: {the_priority}, Status: {the_status})")
+    def search_task(title):
+        pass
