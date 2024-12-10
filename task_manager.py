@@ -17,8 +17,7 @@ class Task_manager:
                 found_task = True
                 break
         if found_task == False:
-            print("AAAAA")
-            print(f"No item in list with the title: {title_to_find}")
+            return f"No item in list with the title: {title_to_find}"
     def mark_complete(self, title_to_find):
         found_task = False
         number_of_task = 0
@@ -33,42 +32,18 @@ class Task_manager:
         if found_task == False:
             print("ERROR: This task does not exist")
     def view_tasks(self, sort_by="priority"):
-        priority = lambda x : x[2]
         task_list = []
         for task in self.tasks:
-            the_title = task["title"]
-            the_priority = task["priority"]
-            the_status = task["status"]
-            task_list.append(f"{the_title} (Priority: {the_priority}, Status: {the_status})")
-        task_list.sort(key=priority)
+            task_list.append(task)
+        if sort_by == "priority":
+            priority = lambda x : x["priority"]
+            task_list.sort(key=priority)
+        elif sort_by == "status":
+            status = lambda x : x["status"]
+            task_list.sort(key=status)
         return task_list
     def search_tasks(self, title):
-        pass
-
-manager = Task_manager()
-
-manager.add_task("Buy groceries", "Milk, eggs, bread", 2)
-manager.add_task("Clean room", "Tidy up and vacuum", 3)
-manager.add_task("Finish Project", "Complete Python assignment", 1)
-
-print(manager.view_tasks())
-# [{'title': 'Finish Project', 'description': 'Complete Python assignment', 'priority': 1, 'status': 'Incomplete'}, {'title': 'Buy groceries', 'description': 'Milk, eggs, bread', 'priority': 2, 'status': 'Incomplete'}, {'title': 'Clean room', 'description': 'Tidy up and vacuum', 'priority': 3, 'status': 'Incomplete'}]   
-
-manager.mark_complete("Buy Groceries")
-print(manager.view_tasks())
-# [{'title': 'Finish Project', 'description': 'Complete Python assignment', 'priority': 1, 'status': 'Incomplete'}, {'title': 'Buy groceries', 'description': 'Milk, eggs, bread', 'priority': 2, 'status': 'Incomplete'}, {'title': 'Clean room', 'description': 'Tidy up and vacuum', 'priority': 3, 'status': 'Incomplete'}]
-
-print(manager.search_tasks("Clean room"))
-
-# Title: Clean room
-# Description: Tidy up and vacuum
-# Priority: 3
-# Status: Incomplete
-
-#manager.remove_task("Clean room")
-
-print(manager.view_tasks())
-# [{'title': 'Finish Project', 'description': 'Complete Python assignment', 'priority': 1, 'status': 'Incomplete'}, {'title': 'Buy groceries', 'description': 'Milk, eggs, bread', 'priority': 2, 'status': 'Incomplete'}]
-
-print(manager.search_tasks("Clean room"))
-# No task found with title Clean room
+        for task in self.tasks:
+            if task["title"] == title:
+                return task
+        return f"No item in list with the title {title}"
