@@ -41,6 +41,7 @@ class Task_manager:
     def search_tasks(self, title):
         pass
 
+'''
 manager = Task_manager()
 
 manager.add_task("Buy groceries", "Milk, eggs, bread", 2)
@@ -68,3 +69,4 @@ print(manager.view_tasks())
 
 print(manager.search_tasks("Clean room"))
 # No task found with title Clean room
+'''
