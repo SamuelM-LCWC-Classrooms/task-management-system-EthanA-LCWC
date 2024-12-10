@@ -18,7 +18,7 @@ class Task_manager:
                 break
         if found_task == False:
             print("AAAAA")
-            print("ERROR: This task does not exist")
+            print(f"No item in list with the title: {title_to_find}")
     def mark_complete(self, title_to_find):
         found_task = False
         number_of_task = 0
@@ -33,15 +33,18 @@ class Task_manager:
         if found_task == False:
             print("ERROR: This task does not exist")
     def view_tasks(self, sort_by="priority"):
+        priority = lambda x : x[2]
+        task_list = []
         for task in self.tasks:
             the_title = task["title"]
             the_priority = task["priority"]
             the_status = task["status"]
-            print(f"{the_title} (Priority: {the_priority}, Status: {the_status})")
+            task_list.append(f"{the_title} (Priority: {the_priority}, Status: {the_status})")
+        task_list.sort(key=priority)
+        return task_list
     def search_tasks(self, title):
         pass
 
-'''
 manager = Task_manager()
 
 manager.add_task("Buy groceries", "Milk, eggs, bread", 2)
@@ -62,11 +65,10 @@ print(manager.search_tasks("Clean room"))
 # Priority: 3
 # Status: Incomplete
 
-manager.remove_task("Clean room")
+#manager.remove_task("Clean room")
 
 print(manager.view_tasks())
 # [{'title': 'Finish Project', 'description': 'Complete Python assignment', 'priority': 1, 'status': 'Incomplete'}, {'title': 'Buy groceries', 'description': 'Milk, eggs, bread', 'priority': 2, 'status': 'Incomplete'}]
 
 print(manager.search_tasks("Clean room"))
 # No task found with title Clean room
-'''
