@@ -49,5 +49,5 @@ class Task_manager:
                 the_description = task["description"]
                 the_priority = task["priority"]
                 the_status = task["status"]
-                return f"Title: {the_title}\nDescription: {the_description}\nPriority: {the_priority}\nStatus: {the_status})"
+                return f"Title: {the_title}\nDescription: {the_description}\nPriority: {the_priority}\nStatus: {the_status}"
         return f"No task found with title {title}"
